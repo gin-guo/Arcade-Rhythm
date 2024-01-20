@@ -21,11 +21,10 @@ public class beatScroller : MonoBehaviour
     {
         if (!hasStarted)
         {
-            //detect if mouse is pressed on the object
-            if(Input.anyKeyDown)
-            {
-                hasStarted = true;
-            }
+            // if(Input.anyKeyDown)
+            // {
+            //     hasStarted = true;
+            // }
         }
         else
         {

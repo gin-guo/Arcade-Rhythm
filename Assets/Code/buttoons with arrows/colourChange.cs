@@ -5,7 +5,6 @@ using UnityEngine;
 public class colourChange : MonoBehaviour
 {
     public SpriteRenderer square;
-    //public beatScroller arrow;
     public static bool mousePressed = false;
     
     // Start is called before the first frame update
@@ -22,9 +21,23 @@ public class colourChange : MonoBehaviour
 
     private void OnMouseDown()
     {
-        square.color = Random.ColorHSV();
+        if (noteObject.canBePressed)
+        {
+            square.color = Color.green;
+            GameManager.instance.NoteHit();
+        }
+        else
+        {
+            square.color = Color.red;
+            GameManager.instance.NoteMissed();
+        }
         print("Changed");
         //arrow.ChangeBehavior();
         mousePressed = true;
+    }
+    
+    private void OnMouseUp()
+    {
+        square.color = Color.white;
     }
 }

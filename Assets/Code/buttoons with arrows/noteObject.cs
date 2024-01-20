@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class noteObjec : MonoBehaviour
+public class noteObject : MonoBehaviour
 {
-    public bool canBePressed;
+    public static bool canBePressed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +16,10 @@ public class noteObjec : MonoBehaviour
     {
         if (colourChange.mousePressed)
         {
-            // if (canBePressed)
-            // {
-            //     gameObject.SetActive(false);
-            // }
             gameObject.SetActive(false);
         }
         
-        //if touches edges of square, also false
+        //only the most recent arrow will be set to false
     }
 
     private void OnTriggerEnter2D(Collider2D other)
