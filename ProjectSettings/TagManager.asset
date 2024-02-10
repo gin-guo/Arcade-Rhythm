@@ -40,12 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 1413769887
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Arrows
     uniqueID: 3127716227
+    locked: 0
+  - name: Background
+    uniqueID: 1413769887
     locked: 0

@@ -4,31 +4,61 @@ using UnityEngine;
 
 public class colourChange : MonoBehaviour
 {
-    public SpriteRenderer square;
+    //public SpriteRenderer _spriteRenderer;
     public static bool mousePressed = false;
-    
-    // Start is called before the first frame update
+
+    private Material _spriteMaterial;
+    private Color objectColor;
+
     void Start()
     {
-        square = GetComponent<SpriteRenderer>();
+        _spriteMaterial = GetComponent<Renderer>().material;
+        objectColor = _spriteMaterial.color;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Example hexadecimal color value (replace with your desired color)
+        string hexadecimalColor = "#F1C658";
 
+        // Convert the hexadecimal color string to a Color object
+        Color newColor = HexToColor(hexadecimalColor);
+
+        // Change the color when the 'A' key is pressed
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+			if (_spriteMaterial.color != newColor)
+			{
+				_spriteMaterial.color = newColor;
+			}
+
+            else if (_spriteMaterial.color == newColor)
+			{
+				_spriteMaterial.color = objectColor;
+			}
+        }
+	}
+
+	private Color HexToColor(string hex)
+    {
+        Color color = Color.clear;
+        if (ColorUtility.TryParseHtmlString(hex, out color))
+        {
+            return color;
+        }
+        return Color.clear;
     }
 
-    private void OnMouseDown()
+    /*private void OnMouseDown()
     {
         if (noteObject.canBePressed)
         {
-            square.color = Color.green;
+            _spriteRenderer.color = Color.green;
             GameManager.instance.NoteHit();
         }
         else
         {
-            square.color = Color.red;
+            _spriteRenderer.color = Color.red;
             GameManager.instance.NoteMissed();
         }
         print("Changed");
@@ -38,6 +68,7 @@ public class colourChange : MonoBehaviour
     
     private void OnMouseUp()
     {
-        square.color = Color.white;
-    }
+        _spriteRenderer.color = Color.white;
+    }*/
+
 }
