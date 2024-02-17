@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DisplayText : MonoBehaviour
@@ -10,11 +11,21 @@ public class DisplayText : MonoBehaviour
 
     void start()
     {
-       
+        display.onEndEdit.AddListener(OnEndEdit);
     }
 
-    public void Create()
+    // public void Create()
+    // {
+    //     obj_text.text = display.text;
+    // }
+    
+    private void OnEndEdit(string enteredText)
     {
-        obj_text.text = display.text;
+        if (!string.IsNullOrEmpty(enteredText))
+        {
+            Debug.Log("User entered: " + enteredText);
+            obj_text.text = enteredText;
+            display.gameObject.SetActive(false);
+        }
     }
 }
