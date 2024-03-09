@@ -1,0 +1,46 @@
+{
+    "name": "Control1",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "3aac06b9-b63e-45c8-9792-f9c07cfc0467",
+            "actions": [
+                {
+                    "name": "Press",
+                    "type": "Button",
+                    "id": "5234c672-1400-4a51-bf57-7c516b1fa123",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "29957b19-cb77-4579-9ba7-d4704aa71717",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
