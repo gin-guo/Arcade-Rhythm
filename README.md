@@ -5,7 +5,7 @@
 4. Open with text editor to view; change extension to .txt and save
 5. Import .txt into text asset in Unity
 
-*Understanding beatmap*
+*Understanding beatmap*    
 Format of hit object: x,y,time,type,hitSound,objectParams,hitSample   
 hitSound and hitSample are irrelevant for us    
 We want to use:     
