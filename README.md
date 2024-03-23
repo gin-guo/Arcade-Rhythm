@@ -6,8 +6,8 @@
 5. Import .txt into text asset in Unity
 
 *Understanding beatmap*
-Format of hit object: x,y,time,type,hitSound,objectParams,hitSample
-hitSound and hitSample are irrelevant for us
-We want to use:
-Circles -> no objectParams
+Format of hit object: x,y,time,type,hitSound,objectParams,hitSample   
+hitSound and hitSample are irrelevant for us    
+We want to use:     
+Circles -> no objectParams    
 Spinners -> objectParams = endTime
