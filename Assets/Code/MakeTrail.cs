@@ -11,13 +11,14 @@ public class MakeTrail : MonoBehaviour
     private float dist;
     private float speed;
     private float dur;
+    
     private string button;
     private Transform origin;
     private Transform destination;
+    
     private List<string[]> hitObjects;
     private int index;
     
-    private int curTime;
     private float startTime;
     
     // Create draw line animation to be called upon at every button-press for duration dur 
@@ -124,8 +125,14 @@ public class MakeTrail : MonoBehaviour
     void Update()
     {   
         // Read HitObject by location and timing
-        int elapsedTimeMillis = (int)(Time.time - startTime) * 1000;
-        if (hitObjects[index] == null) {SceneManager.LoadScene (sceneName:"score-page");}
+        int elapsedTimeMillis = (int)((Time.time - startTime) * 1000);
+        
+        if (index >= hitObjects.Count || hitObjects[index] == null)
+        {
+            SceneManager.LoadScene("score-page");
+            return;
+        }
+        
         int nextBeat = int.Parse(hitObjects[index][2]);
         if (nextBeat < elapsedTimeMillis)
         {
