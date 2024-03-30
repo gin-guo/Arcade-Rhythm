@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HighlightBox : MonoBehaviour
 {
@@ -47,13 +48,13 @@ public class HighlightBox : MonoBehaviour
             }
         }
         
-        //confirm selection
+        //confirm highlight selection
         else if (Input.GetKeyDown(KeyCode.Space))
         {
             //back to song selection
             if (currentIndex == 0)
             {
-                
+                SceneManager.LoadScene("song_selection");
             }
             
             else if (currentIndex == 1)
