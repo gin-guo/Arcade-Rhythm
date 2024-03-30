@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - button
-  - Activator
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -13,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Game
+  - 
   - 
   - 
   - 
@@ -43,8 +41,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Arrows
-    uniqueID: 3127716227
+  - name: New Layer 1
+    uniqueID: 3254462187
     locked: 0
   - name: Background
     uniqueID: 1413769887
