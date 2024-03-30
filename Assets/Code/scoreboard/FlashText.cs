@@ -12,7 +12,7 @@ public class FlashText : MonoBehaviour
     private float flashInterval = 0.5f;
     private float flashTimer;
     private bool isFlashing = true;
-    private char store = ' ';
+    private char storedCharacter = ' ';
     private bool stop = false;
 
     private void Start()
@@ -59,7 +59,7 @@ public class FlashText : MonoBehaviour
         char[] charArray = displayText.text.ToCharArray();
         char currentChar = displayText.text[currentIndex];
         if (currentChar == ' ')
-            currentChar = store;
+            currentChar = storedCharacter;
         int charIndex = alphabet.IndexOf(currentChar);
         if (charIndex != -1)
         {
@@ -76,7 +76,7 @@ public class FlashText : MonoBehaviour
         char[] charArray = displayText.text.ToCharArray();
         char currentChar = displayText.text[currentIndex];
         if (currentChar == ' ')
-            currentChar = store;
+            currentChar = storedCharacter;
         int charIndex = alphabet.IndexOf(currentChar);
 
         if (charIndex != -1)
@@ -96,7 +96,12 @@ public class FlashText : MonoBehaviour
         char[] charArray = displayText.text.ToCharArray();
         char currentCharacter = charArray[currentIndex];
         if (currentCharacter == ' ')
-            return;
+        {
+            //return;
+            charArray[currentIndex] = storedCharacter;
+            displayText.text = new string(charArray);
+            
+        }
         // Stop flashing and move to the next character
         isFlashing = false;
         if (currentIndex == 0)
@@ -112,7 +117,11 @@ public class FlashText : MonoBehaviour
         char[] charArray = displayText.text.ToCharArray();
         char currentCharacter = charArray[currentIndex];
         if (currentCharacter == ' ')
-            return;
+        {
+            charArray[currentIndex] = storedCharacter;
+            displayText.text = new string(charArray);
+            //return;
+        }
         // Stop flashing and move to the next character
         isFlashing = false;
         currentIndex = (currentIndex + 1) % displayText.text.Length;
@@ -144,7 +153,7 @@ public class FlashText : MonoBehaviour
         // Toggle the visibility of the current character
         char currentCharacter = charArray[currentIndex];
         if(currentCharacter != ' ')
-            store = currentCharacter;
+            storedCharacter = currentCharacter;
         for (int i = 0; i < alphabet.Length; i++)
         {
             if (charArray[currentIndex] == alphabet[i])
@@ -155,7 +164,7 @@ public class FlashText : MonoBehaviour
                 return;
             }
         }
-        charArray[currentIndex] = (charArray[currentIndex] == ' ') ? store : ' ';
+        charArray[currentIndex] = (charArray[currentIndex] == ' ') ? storedCharacter : ' ';
         // Debug.Log("Current Character: " + currentCharacter);
         // charArray[currentIndex] = (charArray[currentIndex] == currentCharacter) ? ' ' : currentCharacter;
 
