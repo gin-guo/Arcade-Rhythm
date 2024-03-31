@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -41,6 +42,8 @@ public class MakeTrail : MonoBehaviour
 
             if (len >= dur) { line.SetPosition(0, trailingPoint); }
         }
+        
+        // TODO: add origin and button circles animation
     }
     
     // Translate location of .osu beatmap to button-display format
@@ -109,7 +112,8 @@ public class MakeTrail : MonoBehaviour
         // Format line components
         origin = GameObject.Find("origin").transform;;
         line = GetComponent<LineRenderer>();
-        line.SetWidth(3f, 3f);
+        line.startWidth = 3f;
+        line.endWidth = 3f;
         
         // TODO: set tempo & beat duration using .osu file configs
         dur = 50f; // let 50 be the duration of a single beat?
@@ -132,17 +136,22 @@ public class MakeTrail : MonoBehaviour
             SceneManager.LoadScene("score-page");
             return;
         }
-        
+
         int nextBeat = int.Parse(hitObjects[index][2]);
         if (nextBeat < elapsedTimeMillis)
         {
             index++;
+            
             // set button based on x-y position
             int x = int.Parse(hitObjects[index][0]);
             int y = int.Parse(hitObjects[index][1]);
             
             destination = GameObject.Find(ButtonMapper(x, y)).transform;
             MakeLine(elapsedTimeMillis);
+            
+            // TODO: check for user response
+            
+            // TODO: add other control types
         }
         
     }
