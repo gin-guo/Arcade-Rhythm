@@ -19,7 +19,7 @@
                 {
                     "name": "",
                     "id": "29957b19-cb77-4579-9ba7-d4704aa71717",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

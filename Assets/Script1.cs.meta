@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - actions: {fileID: -944628639613478452, guid: a7ccc0cb7a1f841bb9e6a5e419b2e8b5, type: 3}
-  - bad_apple: {fileID: 4900000, guid: e3d63e72311aa418ebcee1273c549cef, type: 3}
+  - beatmapFile: {fileID: 4900000, guid: e3d63e72311aa418ebcee1273c549cef, type: 3}
   - musicSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}

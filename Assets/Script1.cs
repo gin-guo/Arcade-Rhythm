@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 public class Script1 : MonoBehaviour
 {
     public InputActionAsset actions;
-    private InputAction beatAction;
-    public TextAsset bad_apple;
+    public TextAsset beatmapFile;
     private string beatmapString;
     private int maxLength;
     public int[,] beats;
@@ -33,7 +32,8 @@ public class Script1 : MonoBehaviour
     {
         actions.FindActionMap("gameplay").FindAction("press").performed += OnPress;
 
-        beatmapString = bad_apple.text;
+        beatmapString = beatmapFile
+.text;
         string[] hitSection = beatmapString.Split("[HitObjects]");
         string[] hitObjectLines = hitSection[1].Split("\n");
 
