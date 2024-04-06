@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 1385937701}
   - component: {fileID: 1385937700}
   m_Layer: 0
-  m_Name: button-down
+  m_Name: button-bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 1689776066}
   - component: {fileID: 1689776065}
   m_Layer: 0
-  m_Name: button-up
+  m_Name: button-top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,11 +16,14 @@ public class MakeTrail : MonoBehaviour
     private string button;
     private Transform origin;
     private Transform destination;
+    private Transform buttonTransform;
+    private Dictionary<string, Transform> buttonTransforms;
     
     private List<string[]> hitObjects;
     private int index;
+    private int startTime;
     
-    private float startTime;
+    private int nextBeat;
     
     // Create draw line animation to be called upon at every button-press for duration dur 
     void MakeLine(int elapsedTimeMillis)
@@ -76,7 +79,7 @@ public class MakeTrail : MonoBehaviour
                 button = "button-bot-left";
                 break;
         }
-
+        Debug.Log("BUTTON: " + button);
         return button;
     }
     
@@ -90,17 +93,33 @@ public class MakeTrail : MonoBehaviour
             hitObjects = new List<string[]>();
 
             string row;
+            bool hitObjectsSection = false;
             while ((row = reader.ReadLine()) != null)
             {
-                if (row.StartsWith("[HitObjects]"))
+                if (hitObjectsSection)
                 {
                     string[] hitObjectArray = row.Split(',');
                     hitObjects.Add(hitObjectArray);
+                }
+                else if (row.StartsWith("[HitObjects]"))
+                {
+                    hitObjectsSection = true;
                 }
             }
         }
 
         return hitObjects;
+    }
+    
+    void CacheButtonReferences()
+    {
+        string[] buttonNames = { "button-left", "button-top-left", "button-top", "button-top-right", 
+            "button-right", "button-bot-right", "button-bot", "button-bot-left" };
+        foreach (string buttonName in buttonNames)
+        {
+            buttonTransform = GameObject.Find(buttonName).transform;
+            buttonTransforms.Add(buttonName, buttonTransform);
+        }
     }
     
     // Start is called before the first frame update
@@ -109,8 +128,10 @@ public class MakeTrail : MonoBehaviour
         string songname = "bad_apple";
         hitObjects = ParseSong(songname);
         
-        // Format line components
-        origin = GameObject.Find("origin").transform;;
+        // Format unity components
+        buttonTransforms = new Dictionary<string, Transform>();
+        CacheButtonReferences(); // Cache references to buttons
+        origin = GameObject.Find("origin").transform;
         line = GetComponent<LineRenderer>();
         line.startWidth = 3f;
         line.endWidth = 3f;
@@ -118,9 +139,8 @@ public class MakeTrail : MonoBehaviour
         // TODO: set tempo & beat duration using .osu file configs
         dur = 50f; // let 50 be the duration of a single beat?
         speed = 70f; // these should correspond to the song's tempo
-        
-        // Start time
-        startTime = Time.time;
+
+        startTime = (int)Time.time;
         index = 0;
     }
     
@@ -128,25 +148,25 @@ public class MakeTrail : MonoBehaviour
     // Read beatmap file, call for the line animation
     void Update()
     {   
-        // Read HitObject by location and timing
-        int elapsedTimeMillis = (int)((Time.time - startTime) * 1000);
-        
-        if (index >= hitObjects.Count || hitObjects[index] == null)
+        // End condition
+        if (index >= hitObjects.Count)
         {
             SceneManager.LoadScene("score-page");
             return;
         }
-
-        int nextBeat = int.Parse(hitObjects[index][2]);
-        if (nextBeat < elapsedTimeMillis)
+        
+        // Read [HitObject] for location and timing, set animation
+        int elapsedTimeMillis = (int)(Time.time) - startTime;
+        nextBeat = int.Parse(hitObjects[index][2]);
+        
+        if (nextBeat < elapsedTimeMillis * 1000)
         {
             index++;
-            
-            // set button based on x-y position
-            int x = int.Parse(hitObjects[index][0]);
+            Debug.Log("index: " + index);
+            int x = int.Parse(hitObjects[index][0]); // set button based on x-y position
             int y = int.Parse(hitObjects[index][1]);
             
-            destination = GameObject.Find(ButtonMapper(x, y)).transform;
+            destination = buttonTransforms[ButtonMapper(x, y)];
             MakeLine(elapsedTimeMillis);
             
             // TODO: check for user response
